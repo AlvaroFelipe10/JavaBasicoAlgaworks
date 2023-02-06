@@ -7,7 +7,7 @@ public class CalculadoraProfessor {
         float raio = 5.3f;
 
         float area = raio * raio * pi;
-        int areaSemCasasDecimais = (int) area;
+        int areaSemCasasDecimais = (int) area; 
         
         System.out.println("Resultado: " + area);
         System.out.println("Resultado sem casas decimais: " + areaSemCasasDecimais);
