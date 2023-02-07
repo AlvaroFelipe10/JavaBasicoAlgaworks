@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class OperadorTernario {
-    public static void main(String[]){
+    public static void main(String[]args){
         Scanner entrada = new Scanner(System.in);
 
         System.out.print("Digite sua idade: ");
@@ -13,7 +13,10 @@ public class OperadorTernario {
         /* if (idade >= 18) {
             indicacao = "adulto";
         } else {
-            indicacao = criaca / adolescente " ;
+            indicacao = crianca / adolescente " ;
         }*/
+
+        System.out.println("Resultado: " + indicacao);
     }
 }
+ 
