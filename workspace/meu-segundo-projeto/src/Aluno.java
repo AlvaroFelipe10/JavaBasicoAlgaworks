@@ -1,8 +1,13 @@
 
 public class Aluno {
 	
-	int nota1;
-	int nota2;
-	int nota3;
+	String nome;
+	int idade;
+	
+	
+	Aluno(String nome, int idade) {
+		this.nome = nome;
+		this.idade = idade;
+	}
 	
 }

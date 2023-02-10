@@ -1,17 +1,16 @@
 
 public class CalculadorMedia {
-	Provas calcular(Aluno aluno) {
-		Provas p = new Provas();
-		p.Media = (aluno.nota1 + aluno.nota2 + aluno.nota3) /3;
-		p.nota1 = aluno.nota1;
-		p.nota2 = aluno.nota2;
-		p.nota3 = aluno.nota3;	
-		
-			return p;
-		
+
+	int media;
+	int mediaSala;
+
+	public int calculaMedia(int prova1, int prova2, int prova3) {
+		return (prova1 + prova2 + prova3) /3;
+
 	}
 	
-	
-	
+	public int mediaSala(int media1, int media2) {
+		return (media1 + media2) /2;
+	}
 
 }

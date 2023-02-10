@@ -9,6 +9,12 @@ public class Carro {
 	
 	Proprietario dono;
 	
+	void alterarModelo(String modelo) {
+		if(modelo != null) {
+			this.modelo = modelo;
+		}
+	}
+	
 	void ligar() {
 		System.out.println("Ligando carro :" + modelo);
 	}
