@@ -1,39 +1,53 @@
+package com.algaworks.cursojava.financeiro.modelo;
 
+import com.algaworks.cursojava.financeiro.modelo.ContaPagar;
+import com.algaworks.cursojava.financeiro.modelo.ContaReceber;
+import com.algaworks.cursojava.financeiro.modelo.Conta;
+import com.algaworks.cursojava.financeiro.modelo.Fornecedor;
+import com.algaworks.cursojava.financeiro.modelo.Cliente;
 
 public class Principal8 {
-
 	public static void main(String[] args) {
-		Fornecedor imobiliaria = new Fornecedor("Casa & Cia Negócios Imobiliários");// passando o nome do fornecedor por
-																					// parametro
-		imobiliaria.setNome("Casa & Cia Negócios Imobiliários");// passando o nome do fornecedor pelo objeto
+		
+			// instanciando fornecedores
+			Fornecedor imobiliaria = new Fornecedor();
+			imobiliaria.setNome("Casa & Cia Negócios Imobiliários");
+			Fornecedor mercado = new Fornecedor();
+			mercado.setNome("Mercado do João");
+			
+			// instanciando clientes
+			Cliente atacadista = new Cliente();
+			atacadista.setNome("Triângulo Quadrado Atacadista");
+			Cliente telecom = new Cliente();
+			telecom.setNome("FoneNet Telecomunicações");
+			
+			// instanciando contas a pagar
+			ContaPagar contaPagar1 = new ContaPagar();
+			contaPagar1.setDescricao("Aluguel da matriz");
+			contaPagar1.setValor(1230d);
+			contaPagar1.setDataVencimento("10/05/2012");
+			contaPagar1.setFornecedor(imobiliaria);
+			
+			ContaPagar contaPagar2 = new ContaPagar(mercado, "Compras do mês", 390d, "19/05/2012");
+			
+			// instanciando contas a receber
+			ContaReceber contaReceber1 = new ContaReceber();
+			contaReceber1.setDescricao("Desenvolvimento de projeto de logística em Java");
+			contaReceber1.setValor(89500d);
+			contaReceber1.setDataVencimento("23/05/2012");
+			contaReceber1.setCliente(atacadista);
+			
+			ContaReceber contaReceber2 = new ContaReceber(telecom, "Manutenção em sistema de conta online", 
+				53200d, "13/05/2012");
+			
+			
+			//Exibindo listagem com detalhamento de todas as contas.
+			RelatorioContas relatorio = new RelatorioContas();
+			Conta[] contas = new Conta[] {contaPagar1, contaPagar2, contaReceber1, contaReceber2};
+			
+			relatorio.ExibirListagem(contas);
+			
+			
+			}
 
-		Fornecedor mercado = new Fornecedor("Mercado do João");// passando o nome do fornecedor por parametro
-		mercado.setNome("Mercado do João");// passando o nome do fornecedor pelo objeto
-
-//novo fornecedor, passando o nome pelo objeto:
-		Fornecedor fornecedor = new Fornecedor();
-		fornecedor.setNome("CELPE");
-
-		ContaPagar conta1 = new ContaPagar();
-		conta1.setDescricao("Aluguel da matriz");
-		conta1.setValor(1230d);
-		conta1.setDataVencimento("10/05/2012");
-		conta1.setFornecedor(imobiliaria);
-
-		ContaPagar conta2 = new ContaPagar(mercado, "Compras do mês", 390d, "19/05/2012");
-
-		ContaPagar conta3 = new ContaPagar(mercado, "Aluguel da filial", 700d, "11/05/2012");
-
-//nova conta, passando o nome do fornecedor pelo parametro
-		ContaPagar conta4 = new ContaPagar("NET", "Internet da filial", 400d, "31/01/2023");
-
-		ContaPagar conta5 = new ContaPagar(fornecedor, "Energia do mês de jan/23", 890d, "31/01/2023");
-
-		conta1.pagar();
-		conta2.pagar();
-		conta3.pagar();
-		conta4.pagar();
-		conta5.pagar();
 	}
-
-}

@@ -1,30 +1,51 @@
+package com.algaworks.cursojava.financeiro.modelo;
 
-
-public class ContaPagar {
-
-	private String descricao;
-	private double valor;
-	private String dataVencimento;
+public class ContaPagar extends Conta {
+	
 	private Fornecedor fornecedor;
-
-	public ContaPagar() {
-
+	
+		
+	ContaPagar() {
+			
 	}
-
-	public ContaPagar(String fornecedor, String descricao, double valor, String dataVencimento) {
-		this.descricao = descricao;
-		this.valor = valor;
-		this.dataVencimento = dataVencimento;
-		this.fornecedor = new Fornecedor(fornecedor);
-	}
-
-	public ContaPagar(Fornecedor fornecedor, String descricao, double valor, String dataVencimento) {
-		this.descricao = descricao;
-		this.valor = valor;
-		this.dataVencimento = dataVencimento;
+	
+	public ContaPagar(Fornecedor fornecedor, String descricao, Double valor, String dataVencimento) {
 		this.fornecedor = fornecedor;
+		this.setDescricao (descricao);
+		this.setValor (valor);
+		this.setDataVencimento (dataVencimento);
 	}
-
+	
+	public void exibirDetalhes() {
+		
+		System.out.println("_______________________________________________");
+		System.out.println("       Detalhamento das Contas a Receber       ");
+		System.out.println("_______________________________________________");
+		System.out.println("Descrição: " + getDescricao());
+		System.out.println("Fornecedor: " + getFornecedor().getNome());
+		System.out.println("Valor: " + getValor());
+		System.out.println("Data de Vencimento: " + getDataVencimento());
+		System.out.println("Situação: " + getSituacaoConta());
+	}
+	
+	public void pagar() {
+		
+		if (SituacaoConta.PAGA.equals(this.getSituacaoConta())) {
+			System.out.println("A conta " + getDescricao() + " já está PAGA.");
+			
+		} else if (SituacaoConta.CANCELADA.equals(this.getSituacaoConta())){
+			System.out.println("Esta conta foi CANCELADA.");
+			
+			} else {
+				System.out.println("Efetuando pagamento da conta " + getDescricao() + ", no valor de R$ " 
+						+ getValor() + " com vencimento para " + getDataVencimento() 
+						+ ", relativo ao fornecedor: " + getFornecedor().getNome() + " .");
+				
+				this.situacaoConta = SituacaoConta.PAGA;
+			}
+		
+	}
+	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
@@ -32,37 +53,7 @@ public class ContaPagar {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+	
 
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public double getValor() {
-		return valor;
-	}
-
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-
-	public String getDataVencimento() {
-		return dataVencimento;
-	}
-
-	public void setDataVencimento(String dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
-
-	public void pagar() {
-		System.out.println("Descrição da conta: " + this.descricao);
-		System.out.println("Valor: " + this.valor);
-		System.out.println("Data de Vencimento: " + this.dataVencimento);
-		System.out.println("Fornecedor: " + this.fornecedor.getNome());
-
-	}
 
 }
