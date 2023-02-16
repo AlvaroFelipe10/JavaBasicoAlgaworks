@@ -1,12 +1,12 @@
 package com.algaworks.cursojava.financeiro.modelo;
 
+import com.algaworks.cursojava.financeiro.modelo.OperacaoContaException;
+
 public class ContaReceber extends Conta {
 	
 	private Cliente cliente;
 	
-	
 	public ContaReceber() {
-		
 	}
 	
 	public ContaReceber(Cliente cliente, String descricao, Double valor, String dataVencimento) {
@@ -15,78 +15,38 @@ public class ContaReceber extends Conta {
 		this.setValor(valor);
 		this.setDataVencimento(dataVencimento);
 	}
-	public void exibirDetalhes() {
-		System.out.println("_______________________________________________");
-		System.out.println("       Detalhamento das Contas a Paga          ");
-		System.out.println("_______________________________________________");
-		System.out.println("Descrição: " + getDescricao());
-		System.out.println("Cliente: " + getCliente().getNome());
-		System.out.println("Valor: " + getValor());
-		System.out.println("Data de Vencimento: " + getDataVencimento());
-		System.out.println("Situação: " + getSituacaoConta());
-	}
 	
-	
-	public void cancelar() {
-		
-		if(this.getValor() > 50000d) {
-			
-		System.out.println("Essa conta não pode ser CANCELADA.");
-		
-	} else {
-		
-		super.cancelar();
-
+	public void cancelar() throws OperacaoContaException {
+		if (this.getValor() > 50000d) {
+			throw new OperacaoContaException("Essa conta a receber não pode ser cancelada. " +
+				"É muito dinheiro para deixar de receber: " + this.getDescricao());
+		} else {
+			super.cancelar();
 		}
 	}
 	
 	public void receber() {
-			
-			if (SituacaoConta.PAGA.equals(getSituacaoConta())) {
-				System.out.println("A conta " + getDescricao() + " já está PAGA.");
+		if (SituacaoConta.PAGA.equals(this.getSituacaoConta())) {
+			System.out.println("Não pode receber uma conta que já está paga: " 
+				+ this.getDescricao() + ".");
+		} else if (SituacaoConta.CANCELADA.equals(this.getSituacaoConta())) {
+			System.out.println("Não pode receber uma conta que está cancelada: " 
+				+ this.getDescricao() + ".");
+		} else {
+			System.out.println("Recebendo conta " + this.getDescricao() + " no valor de " 
+				+ this.getValor() + " e vencimento em " + this.getDataVencimento() 
+				+ " do cliente " + this.getCliente().getNome() + ".");
 				
-			} else if (SituacaoConta.CANCELADA.equals(getSituacaoConta())){
-				System.out.println("Esta conta foi CANCELADA.");
-				
-				} else {
-					System.out.println("Efetuando pagamento da conta " + getDescricao() + ", no valor de R$ " 
-							+ getValor() + " com vencimento para " + getDataVencimento() 
-							+ ", relativo ao fornecedor: " + getCliente().getNome() + " .");
-					
-					this.situacaoConta = SituacaoConta.PAGA;
-				}
+			// altera situação da conta para PAGA
+			this.situacaoConta = SituacaoConta.PAGA;
+		}
 	}
-
+	
 	public Cliente getCliente() {
-		return cliente;
+		return this.cliente;
 	}
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public String getDataVencimento() {
-		return dataVencimento;
-	}
-
-	public void setDataVencimento(String dataVencimento) {
-		this.dataVencimento = dataVencimento;
-	}
-
+	
 }

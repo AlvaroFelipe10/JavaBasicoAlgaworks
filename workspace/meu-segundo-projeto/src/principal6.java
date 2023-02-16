@@ -1,6 +1,8 @@
+import java.util.Scanner;
 
 public class principal6{
 	public static void main(String[] args) {
+		
 		Aluno a1 = new Aluno("Alvaro", 27);
 		Aluno a2 = new Aluno("Medina", 30);
 		CalculadorMedia calculadoraMedia = new CalculadorMedia();
