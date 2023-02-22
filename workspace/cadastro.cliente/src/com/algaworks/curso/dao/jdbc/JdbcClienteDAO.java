@@ -20,7 +20,7 @@ public class JdbcClienteDAO implements ClienteDAO {
 	@Override
 	public void salvar(Cliente cliente) {
 		try {
-			String sql = String.format("insert into cliente(nome) values ('%s)", cliente.getNome());
+			String sql = String.format("insert into cliente(nome) values ('%s')", cliente.getNome());
 			
 			PreparedStatement ps = this.connection.prepareStatement(sql);	
 			ps.executeUpdate();

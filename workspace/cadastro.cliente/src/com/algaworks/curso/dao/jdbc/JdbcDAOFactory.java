@@ -13,14 +13,13 @@ public class JdbcDAOFactory extends DAOFactory {
 	
 	public JdbcDAOFactory() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			this.connection = DriverManager.getConnection("jdbc:mysql://localhost/cadastro.cliente"
-					, "root", "Alvana0307");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cadastro.cliente?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8", "root", "Alvana0307");
 		} catch (Exception e) {
-			throw new RuntimeException("Erro recuperando conexão com o banco", e);
+			throw new RuntimeException("Erro recuperando conexï¿½o com o banco", e);
 		}
 	}
-
+	
 	@Override
 	public ClienteDAO getClienteDAO() {
 		return new JdbcClienteDAO(connection);
